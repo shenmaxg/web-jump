@@ -1,0 +1,37 @@
+{
+  "name": "web-jump",
+  "version": "1.0.0",
+  "description": "jump game in web",
+  "keywords": [
+    "three.js",
+    "jump",
+    "web"
+  ],
+  "scripts": {
+    "start": "webpack serve",
+    "prebuild": "rimraf ./build && mkdir ./build",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "@tweenjs/tween.js": "^18.6.4",
+    "stats.js": "^0.17.0",
+    "three": "^0.124.0",
+    "webpack-cli": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-loader": "^8.2.2",
+    "css-loader": "^5.1.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.5.1",
+    "raw-loader": "^4.0.2",
+    "rimraf": "^3.0.2",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.14.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  }
+}
