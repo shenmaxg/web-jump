@@ -1,6 +1,6 @@
 // 增加一些辅助线
 // 增加性能监控指标
-const DEV = true;
+const DEV = false;
 
 // 辅助用户调整视角,DEBUG 时候开启，
 // 注意会导致 mouse 监听无效
@@ -11,10 +11,10 @@ const ORBIT_CONTROL = false;
 const ENABLE_IMAGE_POST_PROCESS = false;
 
 // 开启后，一定会调到中点，测试性能时候使用
-const ENABLE_AUTO_JUMP = true;
+const ENABLE_AUTO_JUMP = false;
 
 // 手动销毁 box
-const ENABLE_DISPOSE_BOX = false;
+const ENABLE_DISPOSE_BOX = true;
 
 // 背景色
 const BACKGROUND_COLOR = 0xD6DBDF;
