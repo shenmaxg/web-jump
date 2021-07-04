@@ -9,7 +9,23 @@ import MagicCubeBox from './MagicCubeBox';
 import {animateFrame} from '../util/TweenUtil';
 import {FAR, ENABLE_DISPOSE_BOX} from "../config/constant";
 
-const BoxList = [CubeBox, CylinderBox, ExpressBox, MagicCubeBox];
+const BoxList = [{
+  index: 0,
+  box: CubeBox,
+  isStatic: false
+}, {
+  index: 1,
+  box: CylinderBox,
+  isStatic: false
+},{
+  index: 2,
+  box: ExpressBox,
+  isStatic: true
+},{
+  index: 3,
+  box: MagicCubeBox,
+  isStatic: true
+}];
 
 export default class BoxGroup {
 
@@ -20,6 +36,29 @@ export default class BoxGroup {
     this.group = new Group();
     // 保存一个小人的引用
     this.littleMan = null;
+    // 存放盒子的缓存
+    this.boxInstance = {};
+
+    this.boxInstance[2] = new ExpressBox(null).mesh;
+    this.boxInstance[3] = new MagicCubeBox(null).mesh;
+  }
+
+  getBoxInstance(index) {
+    const boxObject = BoxList[index];
+
+    if (boxObject.isStatic) {
+      if (this.boxInstance[index]) {
+        return new boxObject.box(this.last, this.boxInstance[index]);
+      } else {
+        const box = new boxObject.box(this.last);
+
+        this.boxInstance[index] = box.mesh.clone();
+
+        return box;
+      }
+    } else {
+      return new boxObject.box(this.last);
+    }
   }
 
   // 创建一个盒子
@@ -31,7 +70,7 @@ export default class BoxGroup {
     } else {
       const index = Math.ceil(Math.random() * BoxList.length - 1);
 
-      box = new BoxList[index](this.last);
+      box = this.getBoxInstance(index);
     }
 
     this.group.add(box.mesh);
@@ -121,8 +160,6 @@ export default class BoxGroup {
 
       boxToDisPose.length = 0;
     }
-
-
   }
 
   updateLittleMan(deltaX, deltaZ) {

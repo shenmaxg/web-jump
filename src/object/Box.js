@@ -10,10 +10,12 @@ import {animateFrame} from "../util/TweenUtil";
 
 class Box {
 
-  constructor(prev) {
+  constructor(prev, cloneMesh) {
     // 构造一个链表结构，方便后续盒子的增加和销毁
     // 上一个盒子
     this.prev = prev;
+
+    this.cloneMesh = cloneMesh;
 
     if (prev) {
       prev.next = this;
@@ -58,7 +60,12 @@ class Box {
     // 计算盒子位置
     this.initPosition();
     // 生成盒子
-    this.initBox();
+    if (this.cloneMesh) {
+      this.mesh = this.cloneMesh;
+    } else {
+      this.initBox();
+    }
+
     // 配置盒子
     this.configBox();
   }
