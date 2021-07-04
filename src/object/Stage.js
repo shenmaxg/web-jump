@@ -163,7 +163,7 @@ export default class Stage {
     this.stats = new Stats();
     //设置统计模式
     // 0: fps, 1: ms, 2: mb, 3+: custom
-    this.stats.showPanel(2);
+    this.stats.showPanel(0);
 
     //将统计对象添加到 body 元素中
     document.body.appendChild(this.stats.dom);
